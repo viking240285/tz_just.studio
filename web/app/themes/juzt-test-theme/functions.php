@@ -150,6 +150,227 @@ function save_car_properties($post_id) {
 add_action('save_post', 'save_car_properties');
 
 
+// ACF
+function create_acf_field_groups() {
+    if (function_exists('acf_add_local_field_group')) {
+
+        // Год выпуска
+        acf_add_local_field_group(array(
+            'key' => 'group_5f9f883ac005b',
+            'title' => 'Год выпуска',
+            'fields' => array(
+                array(
+                    'key' => 'field_5f9f8841e6b34',
+                    'label' => 'Год выпуска',
+                    'name' => 'car_year',
+                    'type' => 'number',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'car',
+                    ),
+                ),
+            ),
+        ));
+
+        // Тип двигателя
+        acf_add_local_field_group(array(
+            'key' => 'group_5f9f884de6b35',
+            'title' => 'Тип двигателя',
+            'fields' => array(
+                array(
+                    'key' => 'field_5f9f8856e6b36',
+                    'label' => 'Тип двигателя',
+                    'name' => 'engine_type',
+                    'type' => 'select',
+                    'choices' => array(
+                        'Бензиновый' => 'Бензиновый',
+                        'Дизельный' => 'Дизельный',
+                        'Электрический' => 'Электрический',
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'car',
+                    ),
+                ),
+            ),
+        ));
+
+        // Трансмиссия (будет показано только при выборе Бензинового или Дизельного двигателя)
+        acf_add_local_field_group(array(
+            'key' => 'group_5f9f886ae6b37',
+            'title' => 'Трансмиссия',
+            'fields' => array(
+                array(
+                    'key' => 'field_5f9f8873e6b38',
+                    'label' => 'Трансмиссия',
+                    'name' => 'transmission_type',
+                    'type' => 'select',
+                    'choices' => array(
+                        'Автоматическая' => 'Автоматическая',
+                        'Ручная' => 'Ручная',
+                        'Роботизированная' => 'Роботизированная',
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'car',
+                    ),
+                ),
+            ),
+            'conditional_logic' => array(
+                array(
+                    array(
+                        'field' => 'field_5f9f8856e6b36', // Поле "Тип двигателя"
+                        'operator' => '==',
+                        'value' => 'Бензиновый', // Покажет поле "Трансмиссия" только если выбрано "Бензиновый"
+                    ),
+                    array(
+                        'field' => 'field_5f9f8856e6b36', // Поле "Тип двигателя"
+                        'operator' => '==',
+                        'value' => 'Дизельный', // Покажет поле "Трансмиссия" только если выбрано "Дизельный"
+                    ),
+                ),
+            ),
+        ));
+
+        // Запас хода в км (будет показано только при выборе Электрического двигателя)
+        acf_add_local_field_group(array(
+            'key' => 'group_5f9f8883e6b39',
+            'title' => 'Запас хода',
+            'fields' => array(
+                array(
+                    'key' => 'field_5f9f888ae6b3a',
+                    'label' => 'Запас хода (км)',
+                    'name' => 'range_km',
+                    'type' => 'number',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'car',
+                    ),
+                ),
+            ),
+            'conditional_logic' => array(
+                array(
+                    array(
+                        'field' => 'field_5f9f8856e6b36', // Поле "Тип двигателя"
+                        'operator' => '==',
+                        'value' => 'Электрический', // Покажет поле "Запас хода" только если выбрано "Электрический"
+                    ),
+                ),
+            ),
+        ));
+    }
+}
+
+add_action('acf/init', 'create_acf_field_groups');
+
+
+
+
+
+
+
+
+
+/*
+// Create Metaboxes
+function add_car_metaboxes() {
+    add_meta_box('car_year', 'Год выпуска', 'car_year_callback', 'car', 'side');
+    add_meta_box('engine_type', 'Тип двигателя', 'engine_type_callback', 'car', 'side');
+    add_meta_box('transmission', 'Трансмиссия', 'transmission_callback', 'car', 'side');
+    add_meta_box('range_km', 'Запас хода (км)', 'range_km_callback', 'car', 'side');
+}
+
+function car_year_callback($post) {
+    $year = get_post_meta($post->ID, '_car_year', true);
+    echo '<input type="text" name="car_year" value="' . esc_attr($year) . '" />';
+}
+
+function engine_type_callback($post) {
+    $engine_type = get_post_meta($post->ID, '_car_engine_type', true);
+    echo '<input type="text" name="car_engine_type" value="' . esc_attr($engine_type) . '" />';
+}
+
+function transmission_callback($post) {
+    $transmission = get_post_meta($post->ID, '_car_transmission_type', true);
+    echo '<input type="text" name="car_transmission_type" value="' . esc_attr($transmission) . '" />';
+}
+
+function range_km_callback($post) {
+    $range_km = get_post_meta($post->ID, '_car_range', true);
+    echo '<input type="text" name="car_range" value="' . esc_attr($range_km) . '" />';
+}
+
+add_action('add_meta_boxes', 'add_car_metaboxes');
+
+function save_car_metaboxes($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return $post_id;
+
+    $fields = array('car_year', 'car_engine_type', 'car_transmission_type', 'car_range');
+
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            $value = sanitize_text_field($_POST[$field]);
+            update_post_meta($post_id, '_' . $field, $value);
+
+            // Сохраняем значения в таблицу wp_cars_properties
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'cars_properties';
+
+            // Определяем, в какой столбец в таблице нужно сохранить значение
+            switch ($field) {
+                case 'car_year':
+                    $column_name = 'year';
+                    break;
+                case 'car_engine_type':
+                    $column_name = 'engine_type';
+                    break;
+                case 'car_transmission_type':
+                    $column_name = 'transmission_type';
+                    break;
+                case 'car_range':
+                    $column_name = 'range_km';
+                    break;
+            }
+
+            // Сохраняем значение в таблицу
+            $wpdb->update(
+                $table_name,
+                array($column_name => $value),
+                array('post_id' => $post_id),
+                array('%s'),
+                array('%d')
+            );
+        }
+    }
+}
+
+add_action('save_post_car', 'save_car_metaboxes');
+*/
+
+
+
+
 
 
 
