@@ -1,0 +1,1 @@
+/Users/viking/Sites/my/wp/tz_just_studio/public_html/web/app/plugins/query-monitor/wp-content/db.php
