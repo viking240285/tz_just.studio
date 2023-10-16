@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './custom/remixicon.css';
+@import './custom/custom.css';
+@import './custom/swiper-bundle.min.css';
+@import './custom/styles.css';
+@import './custom/animate.min.css';
+@import './custom/output.css';
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer.content-info {
+  margin-top: auto;
+}
+
+.feature_images:not(:last-child) {
+  margin-right: 1rem; 
+}
