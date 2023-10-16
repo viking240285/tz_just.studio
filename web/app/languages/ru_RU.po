@@ -208,73 +208,73 @@ msgid "Sunday"
 msgstr "Воскресенье"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:186 wp-includes/js/dist/components.js:55004
+#: wp-includes/class-wp-locale.php:186 wp-includes/js/dist/components.js:56869
 #, gp-priority: high
 msgid "December"
 msgstr "Декабрь"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:185 wp-includes/js/dist/components.js:55001
+#: wp-includes/class-wp-locale.php:185 wp-includes/js/dist/components.js:56866
 #, gp-priority: high
 msgid "November"
 msgstr "Ноябрь"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:184 wp-includes/js/dist/components.js:54998
+#: wp-includes/class-wp-locale.php:184 wp-includes/js/dist/components.js:56863
 #, gp-priority: high
 msgid "October"
 msgstr "Октябрь"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:183 wp-includes/js/dist/components.js:54995
+#: wp-includes/class-wp-locale.php:183 wp-includes/js/dist/components.js:56860
 #, gp-priority: high
 msgid "September"
 msgstr "Сентябрь"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:182 wp-includes/js/dist/components.js:54992
+#: wp-includes/class-wp-locale.php:182 wp-includes/js/dist/components.js:56857
 #, gp-priority: high
 msgid "August"
 msgstr "Август"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:181 wp-includes/js/dist/components.js:54989
+#: wp-includes/class-wp-locale.php:181 wp-includes/js/dist/components.js:56854
 #, gp-priority: high
 msgid "July"
 msgstr "Июль"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:180 wp-includes/js/dist/components.js:54986
+#: wp-includes/class-wp-locale.php:180 wp-includes/js/dist/components.js:56851
 #, gp-priority: high
 msgid "June"
 msgstr "Июнь"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:179 wp-includes/js/dist/components.js:54983
+#: wp-includes/class-wp-locale.php:179 wp-includes/js/dist/components.js:56848
 #, gp-priority: high
 msgid "May"
 msgstr "Май"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:178 wp-includes/js/dist/components.js:54980
+#: wp-includes/class-wp-locale.php:178 wp-includes/js/dist/components.js:56845
 #, gp-priority: high
 msgid "April"
 msgstr "Апрель"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:177 wp-includes/js/dist/components.js:54977
+#: wp-includes/class-wp-locale.php:177 wp-includes/js/dist/components.js:56842
 #, gp-priority: high
 msgid "March"
 msgstr "Март"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:176 wp-includes/js/dist/components.js:54974
+#: wp-includes/class-wp-locale.php:176 wp-includes/js/dist/components.js:56839
 #, gp-priority: high
 msgid "February"
 msgstr "Февраль"
 
 #. translators: Month name.
-#: wp-includes/class-wp-locale.php:175 wp-includes/js/dist/components.js:54971
+#: wp-includes/class-wp-locale.php:175 wp-includes/js/dist/components.js:56836
 #, gp-priority: high
 msgid "January"
 msgstr "Январь"
@@ -2584,12 +2584,12 @@ msgstr "Название стиля блока не должно содержа�
 msgid "Template part has been deleted or is unavailable: %s"
 msgstr "Часть шаблона была удалена или недоступна: %s"
 
-#: wp-includes/blocks/post-navigation-link.php:76
+#: wp-includes/blocks/post-navigation-link.php:77
 msgctxt "label before the title of the previous post"
 msgid "Previous:"
 msgstr "Назад:"
 
-#: wp-includes/blocks/post-navigation-link.php:76
+#: wp-includes/blocks/post-navigation-link.php:77
 msgctxt "label before the title of the next post"
 msgid "Next:"
 msgstr "Далее:"
@@ -6103,7 +6103,7 @@ msgstr "Ярлык"
 #. translators: %s: Digit to indicate multiple of sizing, eg. 2X-Small.
 #: wp-includes/class-wp-theme-json.php:3415
 #: wp-includes/js/dist/block-library.js:51569
-#: wp-includes/js/dist/components.js:58108
+#: wp-includes/js/dist/components.js:59973
 msgid "Small"
 msgstr "Маленький"
 
@@ -7311,7 +7311,7 @@ msgid "Visibility:"
 msgstr "Видимость:"
 
 #: wp-includes/media-template.php:546 wp-includes/media-template.php:791
-#: wp-includes/js/dist/components.js:36980 wp-includes/js/dist/editor.js:10867
+#: wp-includes/js/dist/components.js:38845 wp-includes/js/dist/editor.js:10867
 #: wp-admin/async-upload.php:73
 #: wp-admin/includes/class-wp-media-list-table.php:826
 #: wp-admin/includes/class-wp-privacy-policy-content.php:430
@@ -7339,7 +7339,7 @@ msgstr "Разрешить комментарии"
 msgid "Order"
 msgstr "Порядок"
 
-#: wp-includes/js/dist/components.js:58638
+#: wp-includes/js/dist/components.js:60503
 #: wp-admin/includes/edit-tag-messages.php:14
 msgid "Item added."
 msgstr "Элемент добавлен."
@@ -7352,7 +7352,7 @@ msgstr "Элемент добавлен."
 #: wp-includes/customize/class-wp-customize-nav-menu-locations-control.php:58
 #: wp-includes/functions.php:8246 wp-includes/media-template.php:167
 #: wp-includes/widgets/class-wp-widget-custom-html.php:322 wp-login.php:659
-#: wp-includes/js/dist/components.js:56352
+#: wp-includes/js/dist/components.js:58217
 #: wp-includes/js/dist/customize-widgets.js:1446
 #: wp-includes/js/dist/edit-post.js:3893 wp-includes/js/dist/edit-site.js:19877
 #: wp-includes/js/dist/edit-site.js:20395
@@ -8817,26 +8817,26 @@ msgid "Hour"
 msgstr "Час"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:175
-#: wp-includes/js/dist/components.js:55019
+#: wp-includes/js/dist/components.js:56884
 msgid "Time"
 msgstr "Время"
 
 #. translators: Hidden accessibility text.
 #: wp-includes/customize/class-wp-customize-date-time-control.php:154
 #: wp-includes/js/dist/block-library.js:1894
-#: wp-includes/js/dist/components.js:54948 wp-admin/includes/template.php:845
+#: wp-includes/js/dist/components.js:56813 wp-admin/includes/template.php:845
 msgid "Day"
 msgstr "День"
 
 #. translators: Hidden accessibility text.
 #: wp-includes/customize/class-wp-customize-date-time-control.php:133
 #: wp-includes/js/dist/block-library.js:1888
-#: wp-includes/js/dist/components.js:54965 wp-admin/includes/template.php:832
+#: wp-includes/js/dist/components.js:56830 wp-admin/includes/template.php:832
 msgid "Month"
 msgstr "Месяц"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:127
-#: wp-includes/js/dist/components.js:55080
+#: wp-includes/js/dist/components.js:56945
 #: wp-admin/includes/ajax-actions.php:2252
 #: wp-admin/includes/class-wp-media-list-table.php:404
 #: wp-admin/includes/class-wp-posts-list-table.php:717
@@ -10221,7 +10221,7 @@ msgstr "Мне нужен ID, чтобы это сработало."
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: wp-includes/script-loader.php:909 wp-includes/js/dist/components.js:45382
+#: wp-includes/script-loader.php:909 wp-includes/js/dist/components.js:47247
 msgid "Item selected."
 msgstr "Объект выбран."
 
@@ -13481,7 +13481,7 @@ msgstr "Изменить выбор"
 
 #: wp-includes/script-loader.php:1929
 #: wp-includes/js/dist/block-library.js:40645
-#: wp-includes/js/dist/components.js:59405
+#: wp-includes/js/dist/components.js:61270
 msgid "Previous"
 msgstr "Назад"
 
@@ -13594,7 +13594,7 @@ msgctxt "horizontal table cell alignment"
 msgid "H Align"
 msgstr "Выравнивание по горизонтали"
 
-#: wp-includes/class-wp-editor.php:1306 wp-includes/js/dist/components.js:38854
+#: wp-includes/class-wp-editor.php:1306 wp-includes/js/dist/components.js:40719
 msgid "Border color"
 msgstr "Цвет границы"
 
@@ -13903,7 +13903,7 @@ msgstr "Продолжительность"
 #. translators: Hidden accessibility text.
 #: wp-includes/customize/class-wp-customize-date-time-control.php:164
 #: wp-includes/media.php:3179 wp-includes/js/dist/block-library.js:1885
-#: wp-includes/js/dist/components.js:55086 wp-admin/includes/template.php:849
+#: wp-includes/js/dist/components.js:56951 wp-admin/includes/template.php:849
 msgid "Year"
 msgstr "Год"
 
@@ -13941,7 +13941,7 @@ msgstr "Атрибут title"
 msgid "Advanced Options"
 msgstr "Дополнительные настройки"
 
-#: wp-includes/media-template.php:1191 wp-includes/js/dist/components.js:58317
+#: wp-includes/media-template.php:1191 wp-includes/js/dist/components.js:60182
 msgid "Custom Size"
 msgstr "Произвольный"
 
@@ -14369,7 +14369,7 @@ msgstr "Создать плей-лист"
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:75
 #: wp-includes/customize/class-wp-customize-themes-panel.php:73
 #: wp-includes/media.php:4764 wp-includes/js/dist/block-editor.js:28511
-#: wp-includes/js/dist/components.js:60610
+#: wp-includes/js/dist/components.js:62475
 #: wp-includes/js/dist/edit-post.js:5416 wp-includes/js/dist/edit-post.js:6189
 #: wp-includes/js/dist/edit-site.js:5652 wp-includes/js/dist/edit-site.js:16761
 #: wp-includes/js/dist/edit-site.js:20139
@@ -14432,7 +14432,7 @@ msgstr "Показать/скрыть панель инструментов"
 #: wp-includes/js/dist/block-editor.js:56536
 #: wp-includes/js/dist/block-editor.js:56543
 #: wp-includes/js/dist/block-library.js:31162
-#: wp-includes/js/dist/components.js:70222
+#: wp-includes/js/dist/components.js:72087
 #: wp-includes/js/dist/customize-widgets.js:1426
 #: wp-includes/js/dist/edit-post.js:2244 wp-includes/js/dist/edit-site.js:19863
 #: wp-includes/js/dist/edit-widgets.js:3934 wp-admin/menu.php:370
@@ -14563,7 +14563,7 @@ msgstr "Вставить дату/время"
 msgid "Insert image"
 msgstr "Вставить изображение"
 
-#: wp-includes/class-wp-editor.php:1228 wp-includes/js/dist/components.js:38869
+#: wp-includes/class-wp-editor.php:1228 wp-includes/js/dist/components.js:40734
 msgid "Style"
 msgstr "Стиль"
 
@@ -15251,7 +15251,7 @@ msgstr "Детали вложения"
 #: wp-includes/media-template.php:1175 wp-includes/media.php:4397
 #: wp-includes/js/dist/block-editor.js:3848
 #: wp-includes/js/dist/block-library.js:51575
-#: wp-includes/js/dist/components.js:58108
+#: wp-includes/js/dist/components.js:59973
 #: wp-admin/includes/class-custom-background.php:639
 #: wp-admin/includes/media.php:1203
 msgid "Large"
@@ -15286,7 +15286,7 @@ msgid "Insert gallery"
 msgstr "Вставить галерею"
 
 #: wp-includes/media-template.php:214 wp-includes/media-template.php:221
-#: wp-includes/media-template.php:263 wp-includes/js/dist/components.js:55846
+#: wp-includes/media-template.php:263 wp-includes/js/dist/components.js:57711
 #: wp-admin/includes/media.php:2244
 msgid "Drop files to upload"
 msgstr "Перетащите файлы сюда"
@@ -15441,9 +15441,9 @@ msgstr "%1$s %2$s"
 msgid "Could not insert term relationship into the database."
 msgstr "Не удалось вставить связь элемента в базу данных"
 
-#: wp-includes/media-template.php:804 wp-includes/js/dist/components.js:38252
-#: wp-includes/js/dist/components.js:43966
-#: wp-includes/js/dist/components.js:56223
+#: wp-includes/media-template.php:804 wp-includes/js/dist/components.js:40117
+#: wp-includes/js/dist/components.js:45831
+#: wp-includes/js/dist/components.js:58088
 #: wp-includes/js/dist/edit-site.js:22479 wp-admin/theme-install.php:240
 #: wp-admin/theme-install.php:262 wp-admin/js/color-picker.js:154
 msgid "Clear"
@@ -17327,7 +17327,7 @@ msgstr "%s &#8212 ваше новое имя пользователя"
 #: wp-includes/class-wp-customize-nav-menus.php:1113
 #: wp-includes/script-loader.php:1928 wp-signup.php:653
 #: wp-includes/js/dist/block-library.js:40645
-#: wp-includes/js/dist/components.js:59409
+#: wp-includes/js/dist/components.js:61274
 msgid "Next"
 msgstr "Далее"
 
@@ -17878,13 +17878,13 @@ msgstr "Такого пользователя не существует."
 
 #: wp-includes/class-wp-locale.php:220
 #: wp-includes/customize/class-wp-customize-date-time-control.php:203
-#: wp-includes/js/dist/components.js:55076
+#: wp-includes/js/dist/components.js:56941
 msgid "PM"
 msgstr "ПП"
 
 #: wp-includes/class-wp-locale.php:219
 #: wp-includes/customize/class-wp-customize-date-time-control.php:202
-#: wp-includes/js/dist/components.js:55071
+#: wp-includes/js/dist/components.js:56936
 msgid "AM"
 msgstr "ДП"
 
@@ -17967,25 +17967,25 @@ msgid "Source"
 msgstr "Источник"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:79
-#: wp-includes/js/dist/components.js:22619
+#: wp-includes/js/dist/components.js:24484
 #: wp-admin/includes/class-custom-background.php:415
 msgid "Bottom Right"
 msgstr "Внизу справа"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:71
-#: wp-includes/js/dist/components.js:22617
+#: wp-includes/js/dist/components.js:24482
 #: wp-admin/includes/class-custom-background.php:407
 msgid "Bottom Left"
 msgstr "Внизу слева"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:51
-#: wp-includes/js/dist/components.js:22612
+#: wp-includes/js/dist/components.js:24477
 #: wp-admin/includes/class-custom-background.php:387
 msgid "Top Right"
 msgstr "Вверху справа"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:43
-#: wp-includes/js/dist/components.js:22610
+#: wp-includes/js/dist/components.js:24475
 #: wp-admin/includes/class-custom-background.php:379
 msgid "Top Left"
 msgstr "Вверху слева"
@@ -18011,7 +18011,7 @@ msgstr "Выравнивание"
 msgid "Loop"
 msgstr "Зациклить"
 
-#: wp-includes/js/dist/components.js:43678
+#: wp-includes/js/dist/components.js:45543
 #: wp-admin/includes/ajax-actions.php:2252
 msgid "Type"
 msgstr "Тип"
@@ -18036,7 +18036,7 @@ msgstr "Введённый вами адрес похож на email, добав
 #: wp-includes/class-wp-editor.php:1343
 #: wp-includes/customize/class-wp-customize-background-position-control.php:75
 #: wp-includes/js/dist/block-editor.js:11685
-#: wp-includes/js/dist/components.js:40410
+#: wp-includes/js/dist/components.js:42275
 #: wp-admin/includes/class-custom-background.php:411
 msgid "Bottom"
 msgstr "Снизу"
@@ -18048,8 +18048,8 @@ msgstr "Посередине"
 #: wp-includes/class-wp-editor.php:1341
 #: wp-includes/customize/class-wp-customize-background-position-control.php:47
 #: wp-includes/js/dist/block-editor.js:11684
-#: wp-includes/js/dist/components.js:40409
-#: wp-includes/js/dist/components.js:56555
+#: wp-includes/js/dist/components.js:42274
+#: wp-includes/js/dist/components.js:58420
 #: wp-admin/includes/class-custom-background.php:383
 msgid "Top"
 msgstr "Сверху"
@@ -18094,7 +18094,7 @@ msgstr "Вставить"
 #: wp-includes/class-wp-customize-manager.php:4382
 #: wp-includes/class-wp-editor.php:1178
 #: wp-includes/js/dist/block-editor.js:47214
-#: wp-includes/js/dist/components.js:36980 wp-includes/js/dist/editor.js:10867
+#: wp-includes/js/dist/components.js:38845 wp-includes/js/dist/editor.js:10867
 msgid "Copy"
 msgstr "Копировать"
 
@@ -18644,7 +18644,7 @@ msgstr "Текст"
 
 #: wp-includes/widgets/class-wp-widget-calendar.php:38
 #: wp-includes/js/dist/block-library.js:5712
-#: wp-includes/js/dist/components.js:54328
+#: wp-includes/js/dist/components.js:56193
 msgid "Calendar"
 msgstr "Календарь"
 
@@ -18880,7 +18880,7 @@ msgstr "Комментарии: %s"
 #: wp-includes/js/dist/block-library.js:10237
 #: wp-includes/js/dist/block-library.js:41091
 #: wp-includes/js/dist/block-library.js:56160
-#: wp-includes/js/dist/commands.js:4015 wp-includes/js/dist/components.js:61165
+#: wp-includes/js/dist/commands.js:4015 wp-includes/js/dist/components.js:63030
 #: wp-includes/js/dist/edit-site.js:15119 wp-admin/includes/nav-menu.php:720
 #: wp-admin/includes/nav-menu.php:1096 wp-admin/js/nav-menu.js:1463
 msgid "No results found."
@@ -18897,9 +18897,9 @@ msgstr "&larr; Предыдущая страница"
 #. translators: 'Label. Used to signify a layout property (eg: margin, padding)
 #. will apply uniformly to all screensizes.'
 #: wp-includes/js/dist/block-editor.js:56333
-#: wp-includes/js/dist/components.js:40408
-#: wp-includes/js/dist/components.js:63297
-#: wp-includes/js/dist/components.js:63319
+#: wp-includes/js/dist/components.js:42273
+#: wp-includes/js/dist/components.js:65162
+#: wp-includes/js/dist/components.js:65184
 #: wp-includes/js/dist/edit-site.js:14194
 #: wp-includes/js/dist/edit-site.js:23143 wp-admin/export.php:192
 #: wp-admin/export.php:204 wp-admin/export.php:234 wp-admin/export.php:256
@@ -18974,8 +18974,8 @@ msgstr "HTML"
 #: wp-includes/js/dist/block-editor.js:40252
 #: wp-includes/js/dist/block-editor.js:41859
 #: wp-includes/js/dist/block-editor.js:48067
-#: wp-includes/js/dist/components.js:55324
-#: wp-includes/js/dist/components.js:57116
+#: wp-includes/js/dist/components.js:57189
+#: wp-includes/js/dist/components.js:58981
 #: wp-includes/js/dist/edit-post.js:6172 wp-includes/js/dist/edit-site.js:6318
 #: wp-includes/js/dist/edit-site.js:14427
 #: wp-includes/js/dist/edit-site.js:14499 wp-admin/js/color-picker.js:149
@@ -19282,7 +19282,7 @@ msgstr "Выбрать"
 #: wp-includes/js/dist/block-library.js:31379
 #: wp-includes/js/dist/block-library.js:33459
 #: wp-includes/js/dist/block-library.js:57997
-#: wp-includes/js/dist/components.js:45839
+#: wp-includes/js/dist/components.js:47704
 #: wp-includes/js/dist/edit-post.js:2149 wp-includes/js/dist/edit-post.js:5571
 #: wp-includes/js/dist/edit-post.js:6631 wp-includes/js/dist/edit-site.js:6579
 #: wp-includes/js/dist/edit-site.js:18170
@@ -19373,7 +19373,7 @@ msgstr "Версия"
 #: wp-includes/js/dist/block-library.js:48391
 #: wp-includes/js/dist/block-library.js:48392
 #: wp-includes/js/dist/block-library.js:56144
-#: wp-includes/js/dist/components.js:60100
+#: wp-includes/js/dist/components.js:61965
 #: wp-includes/js/dist/edit-site.js:13593
 #: wp-admin/includes/class-wp-theme-install-list-table.php:58
 #: wp-admin/includes/nav-menu.php:599 wp-admin/includes/nav-menu.php:684
@@ -19443,7 +19443,7 @@ msgstr "Открыто"
 msgid "Private"
 msgstr "Личное"
 
-#: wp-includes/class-wp-editor.php:1184 wp-includes/js/dist/components.js:45968
+#: wp-includes/class-wp-editor.php:1184 wp-includes/js/dist/components.js:47833
 #: wp-admin/includes/meta-boxes.php:165 wp-admin/includes/meta-boxes.php:223
 #: wp-admin/includes/template.php:890 wp-admin/js/post.js:1029
 msgid "OK"
@@ -19499,8 +19499,8 @@ msgstr "Выравнивание"
 #: wp-includes/widgets/class-wp-widget-media-image.php:72
 #: wp-includes/js/dist/block-library.js:51701
 #: wp-includes/js/dist/block-library.js:51702
-#: wp-includes/js/dist/components.js:58251
-#: wp-includes/js/dist/components.js:58252 wp-admin/includes/media.php:1252
+#: wp-includes/js/dist/components.js:60116
+#: wp-includes/js/dist/components.js:60117 wp-admin/includes/media.php:1252
 msgid "Size"
 msgstr "Размер"
 
@@ -19516,7 +19516,7 @@ msgstr "Полный"
 #: wp-includes/media-template.php:903 wp-includes/media-template.php:983
 #: wp-includes/media-template.php:1174 wp-includes/media.php:4396
 #: wp-includes/js/dist/block-editor.js:3845
-#: wp-includes/js/dist/components.js:58108
+#: wp-includes/js/dist/components.js:59973
 #: wp-admin/includes/class-custom-background.php:638
 #: wp-admin/includes/media.php:1202
 msgid "Medium"
@@ -19527,7 +19527,7 @@ msgstr "Средний"
 #: wp-includes/media-template.php:830 wp-includes/media-template.php:1086
 #: wp-includes/media-template.php:1150
 #: wp-includes/js/dist/block-editor.js:11687
-#: wp-includes/js/dist/components.js:40412
+#: wp-includes/js/dist/components.js:42277
 #: wp-admin/includes/class-custom-background.php:401
 #: wp-admin/includes/media.php:1161 wp-admin/includes/media.php:2988
 msgid "Right"
@@ -19536,8 +19536,8 @@ msgstr "Справа"
 #: wp-includes/class-wp-editor.php:1337
 #: wp-includes/customize/class-wp-customize-background-position-control.php:61
 #: wp-includes/media-template.php:827 wp-includes/media-template.php:1083
-#: wp-includes/media-template.php:1147 wp-includes/js/dist/components.js:22614
-#: wp-includes/js/dist/components.js:22615
+#: wp-includes/media-template.php:1147 wp-includes/js/dist/components.js:24479
+#: wp-includes/js/dist/components.js:24480
 #: wp-admin/includes/class-custom-background.php:397
 #: wp-admin/includes/media.php:1160 wp-admin/includes/media.php:2986
 msgid "Center"
@@ -19548,8 +19548,8 @@ msgstr "По центру"
 #: wp-includes/media-template.php:824 wp-includes/media-template.php:1080
 #: wp-includes/media-template.php:1144
 #: wp-includes/js/dist/block-editor.js:11686
-#: wp-includes/js/dist/components.js:40411
-#: wp-includes/js/dist/components.js:56549
+#: wp-includes/js/dist/components.js:42276
+#: wp-includes/js/dist/components.js:58414
 #: wp-admin/includes/class-custom-background.php:393
 #: wp-admin/includes/media.php:1159 wp-admin/includes/media.php:2984
 msgid "Left"
@@ -19694,7 +19694,7 @@ msgstr "Содержимое"
 #: wp-includes/js/dist/block-library.js:6218
 #: wp-includes/js/dist/block-library.js:31664
 #: wp-includes/js/dist/block-library.js:36476
-#: wp-includes/js/dist/components.js:45967
+#: wp-includes/js/dist/components.js:47832
 #: wp-includes/js/dist/edit-post.js:7147 wp-includes/js/dist/edit-site.js:8453
 #: wp-includes/js/dist/edit-site.js:9236 wp-includes/js/dist/edit-site.js:9954
 #: wp-includes/js/dist/edit-site.js:10146
@@ -19773,7 +19773,7 @@ msgstr "Аноним"
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:57
 #: wp-includes/customize/class-wp-widget-area-customize-control.php:61
 #: wp-includes/js/dist/block-editor.js:41691
-#: wp-includes/js/dist/components.js:44896 wp-admin/includes/widgets.php:299
+#: wp-includes/js/dist/components.js:46761 wp-admin/includes/widgets.php:299
 #: wp-admin/js/set-post-thumbnail.js:21
 msgid "Done"
 msgstr "Готово"
@@ -19870,7 +19870,7 @@ msgstr "Цель"
 #: wp-includes/widgets/class-wp-widget-categories.php:48
 #: wp-includes/js/dist/block-library.js:5946
 #: wp-includes/js/dist/block-library.js:6004
-#: wp-includes/js/dist/components.js:63303 wp-admin/edit-link-form.php:31
+#: wp-includes/js/dist/components.js:65168 wp-admin/edit-link-form.php:31
 #: wp-admin/includes/class-wp-links-list-table.php:134
 #: wp-admin/includes/upgrade.php:404
 msgid "Categories"
@@ -20140,7 +20140,7 @@ msgstr "URL"
 #: wp-includes/class-wp-editor.php:1216 wp-includes/theme-compat/sidebar.php:29
 #: wp-includes/js/dist/block-library.js:38029
 #: wp-includes/js/dist/block-library.js:38036
-#: wp-includes/js/dist/components.js:63318
+#: wp-includes/js/dist/components.js:65183
 #: wp-includes/js/dist/edit-site.js:8071 wp-includes/js/dist/editor.js:6936
 #: wp-includes/js/dist/editor.js:6999 wp-admin/comment.php:172
 #: wp-admin/edit-form-comment.php:48
