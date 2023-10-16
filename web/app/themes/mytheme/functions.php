@@ -340,7 +340,7 @@ add_action( 'acf/include_fields', function() {
 		array(
 			'key' => 'field_6528ea95ff79b',
 			'label' => 'Год выпуска',
-			'name' => 'car_year',
+			'name' => 'year',
 			'aria-label' => '',
 			'type' => 'text',
 			'instructions' => '',
@@ -596,56 +596,56 @@ add_action( 'acf/include_fields', function() {
 // } );
 
 // REST API CAR
-add_action('rest_api_init', function () {
-    function register_car_routes() {
-        register_rest_route('mytheme/v1', '/catalog', array(
-            'methods' => 'GET',
-            'callback' => 'get_all_cars',
-        ));
+// add_action('rest_api_init', function () {
+//     function register_car_routes() {
+//         register_rest_route('mytheme/v1', '/catalog', array(
+//             'methods' => 'GET',
+//             'callback' => 'get_all_cars',
+//         ));
 
-        register_rest_route('mytheme/v1', '/manage/cars', array(
-            'methods' => 'POST',
-            'callback' => 'create_car',
-        ));
+//         register_rest_route('mytheme/v1', '/manage/cars', array(
+//             'methods' => 'POST',
+//             'callback' => 'create_car',
+//         ));
 
-        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-            'methods' => 'GET',
-            'callback' => 'get_single_car',
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function($param, $request, $key) {
-                        return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+//             'methods' => 'GET',
+//             'callback' => 'get_single_car',
+//             'args' => array(
+//                 'id' => array(
+//                     'validate_callback' => function($param, $request, $key) {
+//                         return is_numeric($param);
+//                     }
+//                 ),
+//             ),
+//         ));
 
-        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-            'methods' => 'PUT',
-            'callback' => 'update_car',
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function($param, $request, $key) {
-                        return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
+//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+//             'methods' => 'PUT',
+//             'callback' => 'update_car',
+//             'args' => array(
+//                 'id' => array(
+//                     'validate_callback' => function($param, $request, $key) {
+//                         return is_numeric($param);
+//                     }
+//                 ),
+//             ),
+//         ));
 
-        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-            'methods' => 'DELETE',
-            'callback' => 'delete_car',
-            'args' => array(
-                'id' => array(
-                    'validate_callback' => function($param, $request, $key) {
-                        return is_numeric($param);
-                    }
-                ),
-            ),
-        ));
-    }
+//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+//             'methods' => 'DELETE',
+//             'callback' => 'delete_car',
+//             'args' => array(
+//                 'id' => array(
+//                     'validate_callback' => function($param, $request, $key) {
+//                         return is_numeric($param);
+//                     }
+//                 ),
+//             ),
+//         ));
+//     }
 
-});
+// });
 
 
 function custom_rewrite_rules() {

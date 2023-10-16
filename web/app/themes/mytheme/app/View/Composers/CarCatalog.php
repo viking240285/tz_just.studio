@@ -10,10 +10,11 @@ class CarCatalog extends Composer {
     public function with() {
         global $wpdb;
         // dd('111');
-        $per_page = 3; // Количество записей на странице
+        $per_page = get_option('posts_per_page'); // Количество записей на странице
+        // $per_page = 3; // Количество записей на странице
         $current_page = max(1, get_query_var('paged'));
         $brand_filter = sanitize_text_field($_GET['brand'] ?? ''); // Получаем значение параметра brand из URL
-        $year_filter = sanitize_text_field($_GET['year'] ?? ''); // Получаем значение параметра year из URL
+        $year_filter = sanitize_text_field($_GET['car_year'] ?? ''); // Получаем значение параметра year из URL
         // $year_filter = intval(sanitize_text_field($_GET['year'] ?? ''));
         $car_brands = get_terms('car_brand');
         // dd($car_brands);
@@ -36,6 +37,7 @@ class CarCatalog extends Composer {
             "SELECT post_id, car_model, car_brand, image, year, engine_type, transmission_type, range_km
             FROM $table_name
             WHERE $where_clause
+            ORDER BY post_id DESC
             LIMIT %d, %d",
             ($current_page - 1) * $per_page,
             $per_page

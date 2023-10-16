@@ -45,7 +45,7 @@ class RestApiCarsController {
     }
 
     public function get_cars() {
-        // error_log('GET request to /api/v1/catalog');
+        error_log('GET request to /api/v1/catalog');
         global $wpdb;
         $table_name = $wpdb->prefix . 'cars_properties';
         $cars_data = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
@@ -64,8 +64,7 @@ class RestApiCarsController {
                 'car_model' => sanitize_text_field($params['car_model']),
                 'car_brand' => sanitize_text_field($params['car_brand']),
                 'image' => sanitize_text_field($params['image']),
-                'year' => sanitize_text_field($params['year']),
-                // 'year' => intval($params['year']),
+                'year' => intval($params['year']),
                 'engine_type' => sanitize_text_field($params['engine_type']),
                 'transmission_type' => sanitize_text_field($params['transmission_type']),
                 'range_km' => intval($params['range_km']),
@@ -81,7 +80,7 @@ class RestApiCarsController {
         $car_id = $request['id'];
         global $wpdb;
         $table_name = $wpdb->prefix . 'cars_properties';
-        $car_data = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE post_id = %d", $car_id), ARRAY_A);
+        $car_data = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $car_id), ARRAY_A);
 
         if (!$car_data) {
             return new WP_Error('invalid_car_id', 'Invalid car ID.', array('status' => 404));
@@ -102,13 +101,12 @@ class RestApiCarsController {
                 'car_model' => sanitize_text_field($params['car_model']),
                 'car_brand' => sanitize_text_field($params['car_brand']),
                 'image' => sanitize_text_field($params['image']),
-                // 'year' => intval($params['year']),
-                'year' => sanitize_text_field($params['year']),
+                'year' => intval($params['year']),
                 'engine_type' => sanitize_text_field($params['engine_type']),
                 'transmission_type' => sanitize_text_field($params['transmission_type']),
                 'range_km' => intval($params['range_km']),
             ),
-            array('post_id' => $car_id)
+            array('id' => $car_id)
         );
 
         $updated_car_data = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $car_id), ARRAY_A);
@@ -120,7 +118,7 @@ class RestApiCarsController {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cars_properties';
 
-        $deleted = $wpdb->delete($table_name, array('post_id' => $car_id));
+        $deleted = $wpdb->delete($table_name, array('id' => $car_id));
 
         if (!$deleted) {
             return new WP_Error('delete_car_error', 'Failed to delete car.', array('status' => 500));

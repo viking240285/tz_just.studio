@@ -28,7 +28,7 @@
                     <li><strong>Трансмиссия:</strong> {{ $car->transmission_type ?: '-' }}</li>
                     <li><strong>Год выпуска:</strong>
                         @if (!empty($car->year))
-                            <a href="{{ home_url('/catalog?year=' . $car->year) }}" class="text-blue-500 hover:underline">{{ $car->year }}</a>
+                            <a href="{{ home_url('/catalog?car_year=' . $car->year) }}" class="text-blue-500 hover:underline">{{ $car->year }}</a>
                         @else
                             {{ $car->year ?: '-' }}
                         @endif

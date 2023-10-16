@@ -1,3 +1,7 @@
 path: web/wp
 server:
   docroot: web
+
+require:
+  - web/wp-config.php
+

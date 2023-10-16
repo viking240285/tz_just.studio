@@ -28,7 +28,7 @@
                     <li><strong>Трансмиссия:</strong> <?php echo e($car->transmission_type ?: '-'); ?></li>
                     <li><strong>Год выпуска:</strong>
                         <?php if(!empty($car->year)): ?>
-                            <a href="<?php echo e(home_url('/catalog?year=' . $car->year)); ?>" class="text-blue-500 hover:underline"><?php echo e($car->year); ?></a>
+                            <a href="<?php echo e(home_url('/catalog?car_year=' . $car->year)); ?>" class="text-blue-500 hover:underline"><?php echo e($car->year); ?></a>
                         <?php else: ?>
                             <?php echo e($car->year ?: '-'); ?>
 

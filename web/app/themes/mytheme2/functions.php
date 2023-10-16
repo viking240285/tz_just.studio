@@ -1,21 +1,82 @@
 <?php
 
-// namespace App;
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our theme. We will simply require it into the script here so that we
+| don't have to worry about manually loading any of our classes later on.
+|
+*/
 
-// use App\Controllers\CarController;
+if (! file_exists($composer = __DIR__.'/vendor/autoload.php')) {
+    wp_die(__('Error locating autoloader. Please run <code>composer install</code>.', 'sage'));
+}
 
-// function prefix_register_my_rest_routes() {
-//     new CarController(); // Создаем объект контроллера, что автоматически вызовет метод register_routes()
-// }
+require $composer;
 
-// add_action( 'rest_api_init', 'prefix_register_my_rest_routes' );
-// require_once get_template_directory() . '/Controllers/CarController.php';
-// new CarNamespace\CarController();
+/*
+|--------------------------------------------------------------------------
+| Register The Bootloader
+|--------------------------------------------------------------------------
+|
+| The first thing we will do is schedule a new Acorn application container
+| to boot when WordPress is finished loading the theme. The application
+| serves as the "glue" for all the components of Laravel and is
+| the IoC container for the system binding all of the various parts.
+|
+*/
+
+if (! function_exists('\Roots\bootloader')) {
+    wp_die(
+        __('You need to install Acorn to use this theme.', 'sage'),
+        '',
+        [
+            'link_url' => 'https://roots.io/acorn/docs/installation/',
+            'link_text' => __('Acorn Docs: Installation', 'sage'),
+        ]
+    );
+}
+
+\Roots\bootloader()->boot();
+
+/*
+|--------------------------------------------------------------------------
+| Register Sage Theme Files
+|--------------------------------------------------------------------------
+|
+| Out of the box, Sage ships with categorically named theme files
+| containing common functionality and setup to be bootstrapped with your
+| theme. Simply add (or remove) files from the array below to change what
+| is registered alongside Sage.
+|
+*/
+
+collect(['setup', 'filters'])
+    ->each(function ($file) {
+        if (! locate_template($file = "app/{$file}.php", true, true)) {
+            wp_die(
+                /* translators: %s is replaced with the relative file path */
+                sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file)
+            );
+        }
+    });
+
+
+
+
+// use App\View\Composers\SingleCar;
+
+// add_action('init', function () {
+//     view()->composer('single-car', SingleCar::class);
+// });
 
 // Создаем кастомную таблицу при активации темы или плагина
 function create_cars_properties_table() {
 // function create_cars_properties_table() {
-    error_log('Trying to create cars properties table.'); 
+    error_log('Trying to create cars properties table.');
     global $wpdb;
     $table_name = $wpdb->prefix . 'cars_properties';
 
@@ -127,101 +188,6 @@ function register_car_brand_taxonomy() {
 add_action('init', 'register_car_brand_taxonomy');
 
 
-// function save_car_properties($post_id) {
-//     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
-//         return $post_id;
-
-//     $post_status = get_post_status($post_id);
-
-//     if ($post_status === 'publish') {
-//         $post = get_post($post_id);
-
-//         if ($post->post_type == 'car') {
-//             $car_model = get_the_title($post_id);
-//             $car_brand_terms = wp_get_post_terms($post_id, 'car_brand');
-//             $car_brand = !empty($car_brand_terms) ? $car_brand_terms[0]->name : '';
-//             $image = get_the_post_thumbnail_url($post_id);
-//             $year = get_post_meta($post_id, '_car_year', true);
-//             $engine_type = get_post_meta($post_id, '_car_engine_type', true);
-//             $transmission_type = get_post_meta($post_id, '_car_transmission_type', true);
-//             $range_km = get_post_meta($post_id, '_car_range', true);
-
-//             global $wpdb;
-//             $table_name = $wpdb->prefix . 'cars_properties';
-//             $wpdb->replace(
-//                 $table_name,
-//                 array(
-//                     'post_id'           => $post_id,
-//                     'car_model'         => $car_model,
-//                     'car_brand'         => $car_brand,
-//                     'image'             => $image,
-//                     'year'              => $year,
-//                     'engine_type'       => $engine_type,
-//                     'transmission_type' => $transmission_type,
-//                     'range_km'          => $range_km
-//                 ),
-//                 array(
-//                     '%d',
-//                     '%s',
-//                     '%s',
-//                     '%s',
-//                     '%d',
-//                     '%s',
-//                     '%s',
-//                     '%d'
-//                 )
-//             );
-//         }
-//     }
-// }
-// add_action('save_post', 'save_car_properties');
-
-// function save_acf_fields_to_custom_table($post_id) {
-//     // Проверяем, является ли пост автомобилем (типом 'car')
-//     if (get_post_type($post_id) !== 'car') {
-//         return;
-//     }
-
-//     // Получаем значения полей ACF
-//     $engine_type = get_field('engine_type', $post_id);
-//     $transmission_type = get_field('transmission_type', $post_id);
-//     $year = get_field('year', $post_id);
-//     $range_km = get_field('range_km', $post_id);
-//     $image_id = get_field('image', $post_id); // Получаем ID изображения из поля ACF
-//     // $image_url = wp_get_attachment_url($image_id); // Получаем URL изображения
-//     $image_url = $image_id['url'];
-//     // $image = get_the_post_thumbnail_url($post_id);
-    
-    
-//     // Получаем значение поля 'car_brand' из терминов таксономии 'car_brand'
-//     $terms = wp_get_post_terms($post_id, 'car_brand');
-//     $car_brand = !empty($terms) ? $terms[0]->name : '';
-    
-//     // Получаем значение поля 'car_model' из заголовка поста
-//     $car_model = get_the_title($post_id);
-
-//     // Подключаемся к базе данных
-//     global $wpdb;
-//     $table_name = $wpdb->prefix . 'cars_properties';
-
-//     // Подготавливаем данные для вставки в кастомную таблицу
-//     $data = array(
-//         'post_id'           => $post_id,
-//         'car_brand'         => $car_brand,
-//         'car_model'         => $car_model,
-//         'image'             => $image_url,
-//         'year'              => $year,
-//         'engine_type'       => $engine_type,
-//         'transmission_type' => $transmission_type,
-//         'range_km'          => $range_km,
-//     );
-    
-//     $wpdb->replace($table_name, $data, array('%d', '%s', '%s', '%s', '%d', '%s', '%s', '%d'));
-// }
-
-// // Подключаем функцию к хуку ACF
-// add_action('acf/save_post', 'save_acf_fields_to_custom_table', 20);
-
 function save_acf_fields_to_custom_table($post_id) {
     // Проверяем, является ли пост автомобилем (типом 'car')
     if (get_post_type($post_id) !== 'car') {
@@ -234,7 +200,7 @@ function save_acf_fields_to_custom_table($post_id) {
     $year = get_field('year', $post_id) ?: '';
     $range_km = get_field('range_km', $post_id) ?: '';
     $image_id = get_field('image', $post_id);
-    
+
     // Получаем URL изображения
     $image_url = '';
     if ($image_id) {
@@ -244,7 +210,7 @@ function save_acf_fields_to_custom_table($post_id) {
     // Получаем значение поля 'car_brand' из терминов таксономии 'car_brand'
     $terms = wp_get_post_terms($post_id, 'car_brand');
     $car_brand = !empty($terms) ? $terms[0]->name : '';
-    
+
     // Получаем значение поля 'car_model' из заголовка поста
     $car_model = get_the_title($post_id) ?: '';
 
@@ -266,10 +232,10 @@ function save_acf_fields_to_custom_table($post_id) {
 
     // Используем транзакции для обеспечения целостности данных
     $wpdb->query('START TRANSACTION');
-    
+
     // Выполняем вставку данных в кастомную таблицу
     $wpdb->replace($table_name, $data, array('%d', '%s', '%s', '%s', '%d', '%s', '%s', '%d'));
-    
+
     // Если не произошло ошибок, коммитим транзакцию
     $wpdb->query('COMMIT');
 }
@@ -445,94 +411,77 @@ add_action( 'acf/include_fields', function() {
 
 
 
+add_action('rest_api_init', function () {
+    function register_car_routes() {
+        register_rest_route('mytheme/v1', '/catalog', array(
+            'methods' => 'GET',
+            'callback' => 'get_all_cars',
+        ));
 
+        register_rest_route('mytheme/v1', '/manage/cars', array(
+            'methods' => 'POST',
+            'callback' => 'create_car',
+        ));
 
+        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+            'methods' => 'GET',
+            'callback' => 'get_single_car',
+            'args' => array(
+                'id' => array(
+                    'validate_callback' => function($param, $request, $key) {
+                        return is_numeric($param);
+                    }
+                ),
+            ),
+        ));
 
+        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+            'methods' => 'PUT',
+            'callback' => 'update_car',
+            'args' => array(
+                'id' => array(
+                    'validate_callback' => function($param, $request, $key) {
+                        return is_numeric($param);
+                    }
+                ),
+            ),
+        ));
 
-
-
-
-
-/*
-// Create Metaboxes
-function add_car_metaboxes() {
-    add_meta_box('car_year', 'Год выпуска', 'car_year_callback', 'car', 'side');
-    add_meta_box('engine_type', 'Тип двигателя', 'engine_type_callback', 'car', 'side');
-    add_meta_box('transmission', 'Трансмиссия', 'transmission_callback', 'car', 'side');
-    add_meta_box('range_km', 'Запас хода (км)', 'range_km_callback', 'car', 'side');
-}
-
-function car_year_callback($post) {
-    $year = get_post_meta($post->ID, '_car_year', true);
-    echo '<input type="text" name="car_year" value="' . esc_attr($year) . '" />';
-}
-
-function engine_type_callback($post) {
-    $engine_type = get_post_meta($post->ID, '_car_engine_type', true);
-    echo '<input type="text" name="car_engine_type" value="' . esc_attr($engine_type) . '" />';
-}
-
-function transmission_callback($post) {
-    $transmission = get_post_meta($post->ID, '_car_transmission_type', true);
-    echo '<input type="text" name="car_transmission_type" value="' . esc_attr($transmission) . '" />';
-}
-
-function range_km_callback($post) {
-    $range_km = get_post_meta($post->ID, '_car_range', true);
-    echo '<input type="text" name="car_range" value="' . esc_attr($range_km) . '" />';
-}
-
-add_action('add_meta_boxes', 'add_car_metaboxes');
-
-function save_car_metaboxes($post_id) {
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-        return $post_id;
-
-    $fields = array('car_year', 'car_engine_type', 'car_transmission_type', 'car_range');
-
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            $value = sanitize_text_field($_POST[$field]);
-            update_post_meta($post_id, '_' . $field, $value);
-
-            // Сохраняем значения в таблицу wp_cars_properties
-            global $wpdb;
-            $table_name = $wpdb->prefix . 'cars_properties';
-
-            // Определяем, в какой столбец в таблице нужно сохранить значение
-            switch ($field) {
-                case 'car_year':
-                    $column_name = 'year';
-                    break;
-                case 'car_engine_type':
-                    $column_name = 'engine_type';
-                    break;
-                case 'car_transmission_type':
-                    $column_name = 'transmission_type';
-                    break;
-                case 'car_range':
-                    $column_name = 'range_km';
-                    break;
-            }
-
-            // Сохраняем значение в таблицу
-            $wpdb->update(
-                $table_name,
-                array($column_name => $value),
-                array('post_id' => $post_id),
-                array('%s'),
-                array('%d')
-            );
-        }
+        register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
+            'methods' => 'DELETE',
+            'callback' => 'delete_car',
+            'args' => array(
+                'id' => array(
+                    'validate_callback' => function($param, $request, $key) {
+                        return is_numeric($param);
+                    }
+                ),
+            ),
+        ));
     }
+
+});
+
+
+
+
+function custom_rewrite_rules() {
+    add_rewrite_rule(
+        '^car/([^/]+)/?$',
+        'index.php?post_type=car&name=$matches[1]',
+        'top'
+    );
 }
+add_action('init', 'custom_rewrite_rules');
+// flush_rewrite_rules();
 
-add_action('save_post_car', 'save_car_metaboxes');
-*/
-
-
-
-
-
-
-
+// function custom_post_type_car() {
+//     $args = array(
+//         'public' => true,
+//         'label'  => 'Cars',
+//         'supports' => array('title', 'editor', 'thumbnail'),
+//         'rewrite' => array('slug' => 'car'),
+//     );
+//     register_post_type('car', $args);
+// }
+// add_action('init', 'custom_post_type_car');
