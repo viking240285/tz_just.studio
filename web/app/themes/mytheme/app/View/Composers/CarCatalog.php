@@ -2,35 +2,28 @@
 namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
-use Illuminate\Support\Facades\DB;
 
 class CarCatalog extends Composer {
     protected static $views = ['page-catalog'];
 
     public function with() {
         global $wpdb;
-        // dd('111');
+
         $per_page = get_option('posts_per_page'); // Количество записей на странице
-        // $per_page = 3; // Количество записей на странице
         $current_page = max(1, get_query_var('paged'));
-        $brand_filter = sanitize_text_field($_GET['brand'] ?? ''); // Получаем значение параметра brand из URL
-        $year_filter = sanitize_text_field($_GET['car_year'] ?? ''); // Получаем значение параметра year из URL
-        // $year_filter = intval(sanitize_text_field($_GET['year'] ?? ''));
+        $brand_filter = sanitize_text_field($_GET['brand'] ?? '');
+        $year_filter = intval(sanitize_text_field($_GET['car_year'] ?? ''));
         $car_brands = get_terms('car_brand');
-        // dd($car_brands);
 
-        $table_name = $wpdb->prefix . 'cars_properties'; // Используем префикс таблицы WordPress
-
-        $where_clause = '1=1'; // Начальное условие
+        $table_name = $wpdb->prefix . 'cars_properties';
+        $where_clause = '1=1';
 
         if (!empty($brand_filter)) {
             $where_clause .= $wpdb->prepare(" AND car_brand = %s", $brand_filter);
         }
 
         if (!empty($year_filter)) {
-            $where_clause .= $wpdb->prepare(" AND year = %s", $year_filter);
-            // $where_clause .= $wpdb->prepare(" AND year = %d", $year_filter);
-
+            $where_clause .= $wpdb->prepare(" AND year = %d", $year_filter);
         }
 
         $query = $wpdb->prepare(
@@ -67,14 +60,5 @@ class CarCatalog extends Composer {
                 'mid_size' => 2,
             )),
         ];
-
-        // return [
-        //     'cars' => $cars,
-        //     'pagination' => paginate_links(array(
-        //         'total' => ceil($total_cars / $per_page),
-        //         'current' => $current_page,
-        //         'type' => 'array',
-        //     )),
-        // ];
     }
 }

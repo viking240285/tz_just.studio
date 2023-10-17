@@ -2,12 +2,10 @@
 namespace App\Controllers;
 
 use WP_REST_Response;
+use WP_REST_Request;
 use WP_Error;
 
 class RestApiCarsController {
-    // public function __construct() {
-    //     add_action('rest_api_init', [$this, 'register_routes']);
-    // }
 
     public function register_routes() {
         add_action('rest_api_init', function () {
@@ -45,7 +43,6 @@ class RestApiCarsController {
     }
 
     public function get_cars() {
-        // error_log('GET request to /api/v1/catalog');
         global $wpdb;
         $table_name = $wpdb->prefix . 'cars_properties';
         $cars_data = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
@@ -53,19 +50,32 @@ class RestApiCarsController {
     }
 
     public function create_car($request) {
-        $params = $request->get_params();
         global $wpdb;
+        $params = $request->get_params();
         $table_name = $wpdb->prefix . 'cars_properties';
+
+        // Создаем пост в WordPress и получаем его ID
+        $post_args = array(
+            'post_title' => sanitize_text_field($params['car_model']),
+            'post_status' => 'publish',
+            'post_type' => 'car', // Замените 'post' на ваш тип записи, если он отличается
+        );
+
+        $post_id = wp_insert_post($post_args);
+
+        if (!$post_id) {
+            return new WP_Error('post_creation_error', 'Failed to create post.', array('status' => 500));
+        }
 
         $wpdb->insert(
             $table_name,
             array(
-                'post_id' => $params['post_id'],
+                'post_id' => $post_id,
                 'car_model' => sanitize_text_field($params['car_model']),
                 'car_brand' => sanitize_text_field($params['car_brand']),
                 'image' => sanitize_text_field($params['image']),
-                'year' => sanitize_text_field($params['year']),
-                // 'year' => intval($params['year']),
+                // 'year' => sanitize_text_field($params['year']),
+                'year' => intval($params['year']),
                 'engine_type' => sanitize_text_field($params['engine_type']),
                 'transmission_type' => sanitize_text_field($params['transmission_type']),
                 'range_km' => intval($params['range_km']),
@@ -74,7 +84,7 @@ class RestApiCarsController {
 
         $inserted_id = $wpdb->insert_id;
         $created_car_data = $wpdb->get_row("SELECT * FROM $table_name WHERE id = $inserted_id", ARRAY_A);
-        return new WP_REST_Response($created_car_data, 201);
+        return new WP_REST_Response(['message' => 'Car created successfully.'], 201);
     }
 
     public function get_car($request) {
@@ -91,9 +101,9 @@ class RestApiCarsController {
     }
 
     public function update_car($request) {
+        global $wpdb;
         $car_id = $request['id'];
         $params = $request->get_params();
-        global $wpdb;
         $table_name = $wpdb->prefix . 'cars_properties';
 
         $wpdb->update(
@@ -102,8 +112,7 @@ class RestApiCarsController {
                 'car_model' => sanitize_text_field($params['car_model']),
                 'car_brand' => sanitize_text_field($params['car_brand']),
                 'image' => sanitize_text_field($params['image']),
-                // 'year' => intval($params['year']),
-                'year' => sanitize_text_field($params['year']),
+                'year' => intval($params['year']),
                 'engine_type' => sanitize_text_field($params['engine_type']),
                 'transmission_type' => sanitize_text_field($params['transmission_type']),
                 'range_km' => intval($params['range_km']),
@@ -129,22 +138,25 @@ class RestApiCarsController {
         return new WP_REST_Response(['message' => 'Car deleted successfully.'], 204);
     }
 
-
-    public function upload_image($request) {
+    public function upload_image(WP_REST_Request $request) {
         $file = $request->get_file_params();
-        $overrides = [
+        $uploads_path = env('UPLOADS_PATH');
+
+        $overrides = array(
             'test_form' => false,
             'test_size' => true,
             'test_upload' => true,
-        ];
-
-        $uploaded_file = wp_handle_upload($file, $overrides);
+        );
+        $uploaded_file = wp_handle_upload($file, $overrides, null, $uploads_path);
 
         if ($uploaded_file && empty($uploaded_file['error'])) {
-            $image_url = $uploaded_file['url']; // URL загруженного изображения
+            // Получаем URL загруженного изображения
+            $image_url = $uploaded_file['url'];
             return new WP_REST_Response(['image_url' => $image_url], 200);
         } else {
-            return new WP_Error('image_upload_error', $uploaded_file['error']);
+            // Если произошла ошибка загрузки, возвращаем ошибку REST API
+            return new WP_Error('image_upload_error', $uploaded_file['error'], array('status' => 500));
         }
     }
+
 }

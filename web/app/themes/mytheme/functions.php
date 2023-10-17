@@ -80,8 +80,7 @@ function create_cars_properties_table() {
         car_model varchar(255) NOT NULL,
         car_brand varchar(255) NOT NULL,
         image varchar(255) NOT NULL,
-        year varchar(255) NOT NULL,
-        -- year mediumint(4) NOT NULL,
+        year mediumint(4) NOT NULL,
         engine_type varchar(255) NOT NULL,
         transmission_type varchar(255) NOT NULL,
         range_km mediumint(5),
@@ -143,7 +142,7 @@ function register_car_post_type() {
         'capability_type'     => 'post',
         'hierarchical'        => false,
         'supports'            => array('title', 'editor', 'thumbnail'),
-        'taxonomies'          => array('car_brand'),  // Связываем с кастомной таксономией
+        'taxonomies'          => array('car_brand'),
     );
 
     register_post_type('car', $args);
@@ -184,7 +183,7 @@ function save_acf_fields_to_custom_table($post_id) {
     if (get_post_type($post_id) !== 'car') {
         return;
     }
-// dd('!!!!');
+
     // Получаем значения полей ACF
     $engine_type = get_field('engine_type', $post_id) ?: '';
     $transmission_type = get_field('transmission_type', $post_id) ?: '';
@@ -201,8 +200,6 @@ function save_acf_fields_to_custom_table($post_id) {
     // Получаем значение поля 'car_brand' из терминов таксономии 'car_brand'
     $terms = wp_get_post_terms($post_id, 'car_brand');
     $car_brand = !empty($terms) ? $terms[0]->name : '';
-
-    // Получаем значение поля 'car_model' из заголовка поста
     $car_model = get_the_title($post_id) ?: '';
 
     global $wpdb;
@@ -219,21 +216,14 @@ function save_acf_fields_to_custom_table($post_id) {
         'transmission_type' => $transmission_type,
         'range_km'          => $range_km,
     );
-// dd($data);
+
     try {
         $wpdb->query('START TRANSACTION');
-
-        // Выполняем вставку данных в кастомную таблицу
-        $wpdb->replace($table_name, $data, array('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d'));
-
-        // Если не произошло ошибок, коммитим транзакцию
+        $wpdb->replace($table_name, $data, array('%d', '%s', '%s', '%s', '%d', '%s', '%s', '%d'));
         $wpdb->query('COMMIT');
     } catch (Exception $e) {
-        // Обработка ошибок, например, запись в лог или вывод на экран
-        error_log('Ошибка в базе данных: ' . $e->getMessage());
         $wpdb->query('ROLLBACK'); // Откат изменений
     }
-
 }
 
 // Подключаем функцию к хуку ACF
@@ -249,7 +239,6 @@ function delete_custom_table_row_on_post_delete($post_id) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cars_properties';
 
-    // Удаляем запись из кастомной таблицы по post_id
     $wpdb->delete($table_name, array('post_id' => $post_id), array('%d'));
 }
 
@@ -432,232 +421,6 @@ add_action( 'acf/include_fields', function() {
 ) );
 } );
 
-
-// add_action( 'acf/include_fields', function() {
-//         if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-//             return;
-//         }
-
-//         acf_add_local_field_group( array(
-//         'key' => 'group_652858a265031',
-//         'title' => 'Автомобиль',
-//         'fields' => array(
-//             array(
-//                 'key' => 'field_65285b0bd8871',
-//                 'label' => 'Тип двигателя',
-//                 'name' => 'engine_type',
-//                 'aria-label' => '',
-//                 'type' => 'select',
-//                 'instructions' => '',
-//                 'required' => 0,
-//                 'conditional_logic' => 0,
-//                 'wrapper' => array(
-//                     'width' => '',
-//                     'class' => '',
-//                     'id' => '',
-//                 ),
-//                 'choices' => array(
-//                     'Бензиновый' => 'Бензиновый',
-//                     'Дизельный' => 'Дизельный',
-//                     'Электрический' => 'Электрический',
-//                 ),
-//                 'default_value' => 'Бензиновый',
-//                 'return_format' => 'value',
-//                 'multiple' => 0,
-//                 'allow_null' => 0,
-//                 'ui' => 0,
-//                 'ajax' => 0,
-//                 'placeholder' => '',
-//             ),
-//             array(
-//                 'key' => 'field_652858a2c7417',
-//                 'label' => 'Трансмиссия',
-//                 'name' => 'transmission_type',
-//                 'aria-label' => '',
-//                 'type' => 'select',
-//                 'instructions' => '',
-//                 'required' => 0,
-//                 'conditional_logic' => array(
-//                     array(
-//                         array(
-//                             'field' => 'field_65285b0bd8871',
-//                             'operator' => '==contains',
-//                             'value' => 'Бензиновый',
-//                         ),
-//                     ),
-//                     array(
-//                         array(
-//                             'field' => 'field_65285b0bd8871',
-//                             'operator' => '==',
-//                             'value' => 'Дизельный',
-//                         ),
-//                     ),
-//                 ),
-//                 'wrapper' => array(
-//                     'width' => '',
-//                     'class' => '',
-//                     'id' => '',
-//                 ),
-//                 'choices' => array(
-//                     'Автоматическая' => 'Автоматическая',
-//                     'Ручная' => 'Ручная',
-//                     'Роботизированная' => 'Роботизированная',
-//                 ),
-//                 'default_value' => 'Ручная',
-//                 'return_format' => 'value',
-//                 'multiple' => 0,
-//                 'allow_null' => 0,
-//                 'ui' => 0,
-//                 'ajax' => 0,
-//                 'placeholder' => '',
-//             ),
-//             array(
-//                 'key' => 'field_6528ea95ff79b',
-//                 'label' => 'Год выпуска',
-//                 'name' => 'year',
-//                 'aria-label' => '',
-//                 'type' => 'text',
-//                 'instructions' => '',
-//                 'required' => 0,
-//                 'conditional_logic' => 0,
-//                 'wrapper' => array(
-//                     'width' => '',
-//                     'class' => '',
-//                     'id' => '',
-//                 ),
-//                 'default_value' => '',
-//                 'maxlength' => '',
-//                 'placeholder' => '',
-//                 'prepend' => '',
-//                 'append' => '',
-//             ),
-//             array(
-//                 'key' => 'field_6528ead69e8ac',
-//                 'label' => 'Запас хода (км)',
-//                 'name' => 'range_km',
-//                 'aria-label' => '',
-//                 'type' => 'text',
-//                 'instructions' => '',
-//                 'required' => 0,
-//                 'conditional_logic' => array(
-//                     array(
-//                         array(
-//                             'field' => 'field_65285b0bd8871',
-//                             'operator' => '==',
-//                             'value' => 'Электрический',
-//                         ),
-//                     ),
-//                 ),
-//                 'wrapper' => array(
-//                     'width' => '',
-//                     'class' => '',
-//                     'id' => '',
-//                 ),
-//                 'default_value' => '',
-//                 'maxlength' => '',
-//                 'placeholder' => '',
-//                 'prepend' => '',
-//                 'append' => '',
-//             ),
-//             array(
-//                 'key' => 'field_6528ead69e8ac',
-//                 'label' => 'Изображение',
-//                 'name' => 'image',
-//                 'type' => 'image',
-//                 'instructions' => '',
-//                 'required' => 0,
-//                 'conditional_logic' => 0,
-//                 'wrapper' => array(
-//                     'width' => '',
-//                     'class' => '',
-//                     'id' => '',
-//                 ),
-//             ),
-//         ),
-//         'location' => array(
-//             array(
-//                 array(
-//                     'param' => 'post_type',
-//                     'operator' => '==',
-//                     'value' => 'car',
-//                 ),
-//             ),
-//         ),
-//         'menu_order' => 0,
-//         'position' => 'normal',
-//         'style' => 'default',
-//         'label_placement' => 'top',
-//         'instruction_placement' => 'label',
-//         'hide_on_screen' => '',
-//         'active' => true,
-//         'description' => 'djes-rest-api',
-//         'show_in_rest' => 1,
-//     ) );
-// } );
-
-// REST API CAR
-// add_action('rest_api_init', function () {
-//     function register_car_routes() {
-//         register_rest_route('mytheme/v1', '/catalog', array(
-//             'methods' => 'GET',
-//             'callback' => 'get_all_cars',
-//         ));
-
-//         register_rest_route('mytheme/v1', '/manage/cars', array(
-//             'methods' => 'POST',
-//             'callback' => 'create_car',
-//         ));
-
-//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-//             'methods' => 'GET',
-//             'callback' => 'get_single_car',
-//             'args' => array(
-//                 'id' => array(
-//                     'validate_callback' => function($param, $request, $key) {
-//                         return is_numeric($param);
-//                     }
-//                 ),
-//             ),
-//         ));
-
-//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-//             'methods' => 'PUT',
-//             'callback' => 'update_car',
-//             'args' => array(
-//                 'id' => array(
-//                     'validate_callback' => function($param, $request, $key) {
-//                         return is_numeric($param);
-//                     }
-//                 ),
-//             ),
-//         ));
-
-//         register_rest_route('mytheme/v1', '/manage/cars/(?P<id>\d+)', array(
-//             'methods' => 'DELETE',
-//             'callback' => 'delete_car',
-//             'args' => array(
-//                 'id' => array(
-//                     'validate_callback' => function($param, $request, $key) {
-//                         return is_numeric($param);
-//                     }
-//                 ),
-//             ),
-//         ));
-//     }
-
-// });
-
-
-function custom_rewrite_rules() {
-    add_rewrite_rule(
-        '^car/([^/]+)/?$',
-        'index.php?post_type=car&name=$matches[1]',
-        'top'
-    );
-}
-// add_action('init', 'custom_rewrite_rules');
-
-
 if (!function_exists('redirect_home_to_catalog')) {
     function redirect_home_to_catalog() {
         if (is_front_page()) {
@@ -668,28 +431,3 @@ if (!function_exists('redirect_home_to_catalog')) {
 }
 
 add_action('template_redirect', 'redirect_home_to_catalog');
-
-
-
-// function custom_rewrite_rule2() {
-//     add_rewrite_rule('^catalog/year/([0-9]{4})/brand/([^/]+)?$', 'index.php?post_type=car&year=$matches[1]&brand=$matches[2]', 'top');
-// }
-// add_action('init', 'custom_rewrite_rule2', 10, 0);
-
-// function custom_rewrite_tag() {
-//     add_rewrite_tag('%year%', '([0-9]{4})');
-//     add_rewrite_tag('%brand%', '([^&]+)');
-// }
-// add_action('init', 'custom_rewrite_tag', 10, 0);
-// flush_rewrite_rules();
-
-// function custom_post_type_car() {
-//     $args = array(
-//         'public' => true,
-//         'label'  => 'Cars',
-//         'supports' => array('title', 'editor', 'thumbnail'),
-//         'rewrite' => array('slug' => 'car'),
-//     );
-//     register_post_type('car', $args);
-// }
-// add_action('init', 'custom_post_type_car');

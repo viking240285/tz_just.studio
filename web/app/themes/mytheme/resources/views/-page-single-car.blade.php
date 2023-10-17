@@ -1,42 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="bg-gray-100 min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 shadow-lg rounded-lg">
-            <h1 class="text-4xl font-bold mb-4">Добро пожаловать в мою тему Sage 10 с Tailwind CSS!</h1>
-            <p class="text-gray-700 mb-4">Это пример главной страницы, созданной с использованием Tailwind CSS.</p>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Нажми меня!
-            </button>
-        </div>
-    </div> --}}
-    <div class="md:mx-60 sticky top-0 z-50">
-      <div class="container shadow-2xl  flex animate__animated items-center my-2 py-2 justify-between bg-white py-4 z-50 dark:bg-black sticky top-0 position-fixed"
-          id="nav">
-          <div class="text-dark dark:text-white columns-9 flex items-center mb-0">
-              <img src="{{ asset('images/favicon.png') }}" class="mr-2 bg-black rounded" alt="">
-              <p class="mb-0 text-dark dark:text-white md:text-xl text-2xl">Elecar</p>
-          </div>
-          <div class="md:hidden block">
-              <i class="ri-menu-3-line text-2xl text-dark dark:text-white"></i>
-          </div>
-          <div class="md:block hidden">
-              <a href="#home" class="dark:text-white text-black hover:text-indigo-400 mr-2">Home</a>
-              <a href="#about" class="dark:text-white hover:text-indigo-400 mr-2">About</a>
-              <a href="#home" class="dark:text-white hover:text-indigo-400 mr-2">Popular</a>
-              <a href="#home" class="dark:text-white hover:text-indigo-400 mr-2">Featured</a>
-              <div class="dark:inline dark:block hidden ml-6" id="">
-                  <i id="light" class="ri-sun-fill text-black dark:text-white text-2xl"></i>
-              </div>
-              <div class="inline block dark:hidden ml-6" id="">
-                  <i id="dark" class="ri-moon-fill text-black dark:text-white text-2xl"></i>
-              </div>
-          </div>
-      </div>
-  </div>
+
+
   <div class="md:mx-60">
-
-
       <!-- home start -->
       <section id="home" class="text-center flex flex-col justify-center items-center mt-16">
           <h5 class="text-dark dark:text-white font-bold md:text-4xl sm:text-xl home__title">Choose The Best Car</h5>
@@ -125,7 +92,6 @@
                           <p class="dark:text-white text-black font-bold text-xl">Porshe</p>
                           <p class="dark:text-zinc-400 text-zinc-200 font-bold text-sm mb-7">Turbo 5</p>
                           <img src="{{ asset('images/popular1.png') }}" class="w-44 pl-5 duration-500 hover:-translate-y-5" alt="">
-                          {{-- <img src="./images/popular1.png" class="w-44 pl-5 duration-500 hover:-translate-y-5" alt=""> --}}
                           <div class="mt-4">
                               <div class="flex">
                                   <div class="w-1/2">
@@ -451,9 +417,9 @@
                       <p class="font-bold text-white text-xl pl-4">
                           $175,900
                       </p>
-                      <button class="bg-indigo-400 rounded-tl-lg rounded-br-lg hover:bg-indigo-700">
+                      {{-- <button class="bg-indigo-400 rounded-tl-lg rounded-br-lg hover:bg-indigo-700">
                           <i class="ri-sd-card-fill text-dark dark:text-white font-light px-4 py-5"></i>
-                      </button>
+                      </button> --}}
                   </div>
               </div>
           </div>
@@ -554,12 +520,7 @@
 
   </section>
 
-  <div class="mb-5">
-      <p class="text-center text-xs text-gray-500">&#169; Bedimcode. All rigths reserved</p>
-  </div>
-  <a class="fixed">
-      <i style="" class="ri-arrow-up-circle-fill bottom-9 text-dark dark:text-white text-3xl"></i>
-  </a>
+
 
 
   <script src="{{ asset('scripts/custom/scrollreveal.min.js') }}"></script>
